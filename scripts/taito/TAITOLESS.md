@@ -4,15 +4,15 @@ This file has been copied from [WEBSITE-TEMPLATE](https://github.com/TaitoUnited
 
 Table of contents:
 
-* [Prerequisites](#prerequisites)
-* [Quick start](#quick-start)
-* [Configuration](##onfiguration)
+- [Prerequisites](#prerequisites)
+- [Quick start](#quick-start)
+- [Configuration](##onfiguration)
 
 ## Prerequisites
 
-* [npm](https://github.com/npm/cli) that usually ships with [Node.js](https://nodejs.org/)
-* [Docker Compose](https://docs.docker.com/compose/install/)
-* Optional: Some editor plugins depending on technology (e.g. [ESLint](https://eslint.org/docs/user-guide/integrations#editors) and [Prettier](https://prettier.io/docs/en/editors.html) for JavaScript/TypeScript)
+- [npm](https://github.com/npm/cli) that usually ships with [Node.js](https://nodejs.org/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+- Optional: Some editor plugins depending on technology (e.g. [ESLint](https://eslint.org/docs/user-guide/integrations#editors) and [Prettier](https://prettier.io/docs/en/editors.html) for JavaScript/TypeScript)
 
 ## Quick start
 
@@ -46,13 +46,13 @@ Instructions defined in [CONFIGURATION.md](CONFIGURATION.md) apply. You just nee
 
 ### Creating an environment
 
-* Run taito-config.sh to set the environment variables for the environment in question (dev, test, stag, canary, or prod):
-    ```
-    export taito_target_env=dev
-    . taito-config.sh
-    ```
-* IF MONITORING IS REQUIRED:: Run terraform scripts that are located at `scripts/terraform/`. Use `scripts/terraform/common/backend.tf` as backend, if you want to store terraform state on git. Note that the terraform scripts assume that a cloud provider project defined by `taito_resource_namespace` and `taito_resource_namespace_id` already exists and Terraform is allowed to create resources for that project.
-* IF BASIC AUTH IS REQUIRED: Set Kubernetes secret values with `kubectl`. The secrets are defined by `taito_secrets` in `scripts/taito/project.sh`, and they are referenced in `scripts/helm*.yaml` files.
+- Run taito-config.sh to set the environment variables for the environment in question (dev, test, stag, canary, or prod):
+  ```
+  export taito_target_env=dev
+  . taito-config.sh
+  ```
+- IF MONITORING IS REQUIRED:: Run terraform scripts that are located at `scripts/terraform/`. Use `scripts/terraform/common/backend.tf` as backend, if you want to store terraform state on git. Note that the terraform scripts assume that a cloud provider project defined by `taito_resource_namespace` and `taito_resource_namespace_id` already exists and Terraform is allowed to create resources for that project.
+- IF BASIC AUTH IS REQUIRED: Set Kubernetes secret values with `kubectl`. The secrets are defined by `taito_secrets` in `scripts/taito/project.sh`, and they are referenced in `scripts/helm*.yaml` files.
 
 ### Setting up CI/CD
 

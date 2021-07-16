@@ -4,10 +4,10 @@ This file has been copied from [WEBSITE-TEMPLATE](https://github.com/TaitoUnited
 
 ## Prerequisites
 
-* [npm](https://github.com/npm/cli) that usually ships with [Node.js](https://nodejs.org/)
-* [Docker Compose](https://docs.docker.com/compose/install/)
-* [Taito CLI](https://taitounited.github.io/taito-cli/) (or see [TAITOLESS.md](TAITOLESS.md))
-* Optional: Some editor plugins depending on technology (e.g. [ESLint](https://eslint.org/docs/user-guide/integrations#editors) and [Prettier](https://prettier.io/docs/en/editors.html) for JavaScript/TypeScript)
+- [npm](https://github.com/npm/cli) that usually ships with [Node.js](https://nodejs.org/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+- [Taito CLI](https://taitounited.github.io/taito-cli/) (or see [TAITOLESS.md](TAITOLESS.md))
+- Optional: Some editor plugins depending on technology (e.g. [ESLint](https://eslint.org/docs/user-guide/integrations#editors) and [Prettier](https://prettier.io/docs/en/editors.html) for JavaScript/TypeScript)
 
 ## Basic settings
 
@@ -36,49 +36,49 @@ Once you see text `No site yet at www/site. Just keep the container running.`, e
 
 2. Restart containers and open the site on browser:
 
-    ```
-    taito stop
-    taito start --clean
-    taito open www
-    ```
+   ```
+   taito stop
+   taito start --clean
+   taito open www
+   ```
 
 ### Gatsby
 
 1. Start a shell inside the www Docker container:
 
-    ```
-    taito shell:www
-    ```
+   ```
+   taito shell:www
+   ```
 
 2. Create a new Gatsby site based on one of the [starters](https://www.gatsbyjs.org/starters?v=2) (NOTE: Select 'npm' as package manager and ignore the 'git commit' error):
 
-    ```
-    su node
-    npx gatsby new site STARTER-SOURCE-URL-OF-MY-CHOICE
-    rm -rf site/.git
-    exit
-    exit
-    ```
+   ```
+   su node
+   npx gatsby new site STARTER-SOURCE-URL-OF-MY-CHOICE
+   rm -rf site/.git
+   exit
+   exit
+   ```
 
 3. Add development start command for docker to `www/site/package.json`:
 
-    ```
-    "start:docker": "gatsby develop --host 0.0.0.0 --port 8080",
-    ```
+   ```
+   "start:docker": "gatsby develop --host 0.0.0.0 --port 8080",
+   ```
 
-4. Enable `/develop/site/node_modules` mount in `docker-compose.yaml`:
+4. Enable `/develop/site/...` mounts in `docker-compose.yaml`:
 
-    ```
-    EDIT docker-compose.yaml
-    ```
+   ```
+   EDIT docker-compose.yaml
+   ```
 
 5. Restart containers and open the site on browser:
 
-    ```
-    taito stop
-    taito start --clean
-    taito open www
-    ```
+   ```
+   taito stop
+   taito start --clean
+   taito open www
+   ```
 
 6. If you are using Linux, you may also want to fix ownership of the newly created files with:
 
@@ -90,61 +90,61 @@ Once you see text `No site yet at www/site. Just keep the container running.`, e
 
 1. Start a shell inside the www Docker container:
 
-    ```
-    taito shell:www
-    ```
+   ```
+   taito shell:www
+   ```
 
 2. Create a new Hugo site (See [Hugo themes](https://themes.gohugo.io/) and [Hugo quick start](https://gohugo.io/getting-started/quick-start/) for more details):
 
-    ```
-    hugo new site site
-    cd site
-    git clone https://github.com/budparr/gohugo-theme-ananke.git themes/ananke
-    rm -rf themes/ananke/.git
-    echo 'theme = "ananke"' >> config.toml
-    hugo new posts/my-first-post.md
-    exit
-    ```
+   ```
+   hugo new site site
+   cd site
+   git clone https://github.com/budparr/gohugo-theme-ananke.git themes/ananke
+   rm -rf themes/ananke/.git
+   echo 'theme = "ananke"' >> config.toml
+   hugo new posts/my-first-post.md
+   exit
+   ```
 
 3. If you have some trouble with links, you might also need to enable relative urls by using the following settings in `www/site/config.toml`:
 
-    ```
-    baseURL = ""
-    relativeURLs = true
-    ```
+   ```
+   baseURL = ""
+   relativeURLs = true
+   ```
 
 4. Restart containers and open the site on browser:
 
-    ```
-    taito stop
-    taito start --clean
-    taito open www
-    ```
+   ```
+   taito stop
+   taito start --clean
+   taito open www
+   ```
 
 ### Jekyll
 
 1. Start a shell inside the www Docker container:
 
-    ```
-    taito shell:www
-    ```
+   ```
+   taito shell:www
+   ```
 
 2. Create a new site:
 
-    ```
-    bash
-    jekyll new site
-    exit
-    exit
-    ```
+   ```
+   bash
+   jekyll new site
+   exit
+   exit
+   ```
 
 3. Restart containers and open the site on browser:
 
-    ```
-    taito stop
-    taito start --clean
-    taito open www
-    ```
+   ```
+   taito stop
+   taito start --clean
+   taito open www
+   ```
 
 ## Your first remote environment (dev)
 
@@ -205,8 +205,8 @@ You can edit content in CMS and preview changes on a remote environment. This is
 1. Enable build webhook by editing `scripts/helm-ENV.yaml`.
 2. Configure webhooks in your CMS settings. You can find basic auth credentials and webhook urlprefix with `taito secret show:ENV`.
 
-    - Preview event: https://USER:PASSWORD@ENV-DOMAIN/webhook/URLPREFIX/preview
-    - Publish event: https://USER:PASSWORD@ENV-DOMAIN/webhook/URLPREFIX/publish
+   - Preview event: https://USER:PASSWORD@ENV-DOMAIN/webhook/URLPREFIX/preview
+   - Publish event: https://USER:PASSWORD@ENV-DOMAIN/webhook/URLPREFIX/publish
 
 3. Optional: You may optionally filter incoming webhooks by adding trigger rules in `hooks.json`. See [webhook examples](https://github.com/adnanh/webhook/blob/master/docs/Hook-Examples.md).
 4. Optional: Add `build:preview` command script to your static web site implementation.
