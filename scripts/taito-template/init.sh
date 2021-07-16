@@ -9,8 +9,9 @@ fi
 
 # Remove the example site
 rm -rf www/site
+sed -i '/\/site\/.cache" # FOR GATSBY ONLY/d' docker-compose.yaml
 sed -i '/\/site\/node_modules" # FOR GATSBY ONLY/d' docker-compose.yaml
-sed -i '/\/site\/node_modules" # FOR GATSBY ONLY/d' docker-compose-remote.yaml
+sed -i '/\/site\/public" # FOR GATSBY ONLY/d' docker-compose.yaml
 
 # Replace some strings
 echo "Replacing project and company names in files. Please wait..."

@@ -80,6 +80,12 @@ Once you see text `No site yet at www/site. Just keep the container running.`, e
     taito open www
     ```
 
+6. If you are using Linux, you may also want to fix ownership of the newly created files with:
+
+   ```
+   chown -R $(id -u):$(id -g) www/site
+   ```
+
 ### Hugo
 
 1. Start a shell inside the www Docker container:

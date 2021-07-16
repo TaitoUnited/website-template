@@ -16,9 +16,13 @@ services:
     volumes:
       - "./www:/develop:delegated"
       - "/develop/node_modules"
+      - "/develop/site/.cache" # FOR GATSBY ONLY
       - "/develop/site/node_modules" # FOR GATSBY ONLY
+      - "/develop/site/public" # FOR GATSBY ONLY
       # FOR GATSBY ONLY:
+      # - "/develop/site/.cache"
       # - "/develop/site/node_modules"
+      # - "/develop/site/public"
     environment:
       COMMON_PUBLIC_PORT: 9999
       BASE_PATH: ''
