@@ -203,8 +203,9 @@ Operations on production and staging environments usually require admin rights. 
 You can edit content in CMS and preview changes on a remote environment. This is how you enable preview for ENV environment:
 
 1. Enable build webhook by editing `scripts/helm-ENV.yaml`.
-2. Configure webhooks in your CMS settings. You can find basic auth credentials and webhook urlprefix with `taito secret show:ENV`.
+2. Configure webhooks in your CMS settings. You can find basic auth credentials and webhook urlprefix with `taito secret show:ENV`. Use `publish-for-strapi` endpoint for Strapi, and `preview` + `publish` endpoints for other content management systems.
 
+   - Publish event for Strapi: https://USER:PASSWORD@ENV-DOMAIN/webhook/URLPREFIX/publish-for-strapi
    - Preview event: https://USER:PASSWORD@ENV-DOMAIN/webhook/URLPREFIX/preview
    - Publish event: https://USER:PASSWORD@ENV-DOMAIN/webhook/URLPREFIX/publish
 
