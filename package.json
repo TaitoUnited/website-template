@@ -1,6 +1,7 @@
 {
   "name": "website-template",
   "scripts": {
+    "prepare": "husky install",
     "install-ci": "echo '# No additional dependencies need to be installed in ci mode'",
     "install-dev": "echo '# Installing all libraries on host for code editor support. TODO how to minimize as --only=dev affects devDepencies also?' && npm-run-all install-all",
     "install-all": "npm-run-all install-all:www",
@@ -31,15 +32,11 @@
     "precommit:lint": "echo 'SKIP: Skipping linting on commit since we are already continuously linting during development.'",
     "types": "if [ -f .flowconfig ]; then flow; elif [ -f tsconfig.json ]; then echo TODO run typescript; fi",
     "disabled-types": "echo flow/typescript check disabled on prepush",
+    "husky:commit-msg": "commitlint --edit",
+    "husky:pre-commit": "if [ \"$taito_mode\" != 'ci' ]; then npm-run-all precommit:branch precommit:lint; fi",
+    "husky:pre-push": "if [ \"$taito_mode\" != 'ci' ]; then npm-run-all --parallel lint disabled-types unit; fi",
     "release-pre:prod": "semantic-release --dry-run",
     "release-post:prod": "semantic-release --no-ci"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "if [[ \"$taito_mode\" != 'ci' ]]; then npm-run-all precommit:branch precommit:lint; fi",
-      "pre-push": "if [[ \"$taito_mode\" != 'ci' ]]; then npm-run-all --parallel lint disabled-types unit; fi"
-    }
   },
   "commitlint": {
     "extends": [
