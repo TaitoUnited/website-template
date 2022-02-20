@@ -22,5 +22,4 @@ settings:
       type: static
       path: /
       uptimePath: /
-
 # END
