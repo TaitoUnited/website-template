@@ -49,7 +49,7 @@ full-stack:
 
     www:
       paths:
-        - path:
+        - path: /
       cpuRequest: 5m
       cpuLimit: 100m
       memoryRequest: 10Mi
