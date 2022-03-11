@@ -35,6 +35,7 @@ sed -i "s/4229/${server_debug_port}/g" \
 sed -i "s/9999/${ingress_port}/g" \
   scripts/taito/DEVELOPMENT.md \
   scripts/taito/TAITOLESS.md \
+  scripts/taito/env-local.sh \
   scripts/taito/config/main.sh \
   docker-compose.yaml \
     &> /dev/null || :
