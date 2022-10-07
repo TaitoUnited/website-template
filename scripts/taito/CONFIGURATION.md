@@ -53,10 +53,8 @@ Once you see text `No site yet at www/site. Just keep the container running.`, e
 2. Create a new Gatsby site based on one of the [starters](https://www.gatsbyjs.org/starters?v=2) (NOTE: Select 'npm' as package manager and ignore the 'git commit' error):
 
    ```
-   su node
    npx gatsby new site STARTER-SOURCE-URL-OF-MY-CHOICE
    rm -rf site/.git
-   exit
    exit
    ```
 

@@ -1,7 +1,7 @@
 {
   "name": "website-template-www",
   "scripts": {
-    "install-site": "if [ -f ./site/package-lock.json ]; then cd site && mkdir -p node_modules && npm ci; elif [ -f ./site/package.json ]; then cd site && mkdir -p node_modules && npm install; fi",
+    "install-site": "cd site && if [ -f package.json ]; then mkdir -p node_modules .cache public; fi && if [ -f package-lock.json ]; then npm ci; elif [ -f package.json ]; then npm install; fi",
     "lint": "echo Linting disabled",
     "unit": "if [ -d ./site ]; then cd site && npm run test; fi",
     "test": "echo No tests for www",
