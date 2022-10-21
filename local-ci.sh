@@ -17,7 +17,7 @@ taito build prepare:$BRANCH $IMAGE_TAG
 
 # Prepare artifacts for deployment
 taito artifact prepare:www:$BRANCH $IMAGE_TAG
-taito artifact prepare:webhook:$BRANCH $IMAGE_TAG
+taito artifact prepare:webhook:$BRANCH $IMAGE_TAG "" false ./www ./www Dockerfile.webhook
 
 # Deploy changes to target environment
 taito deployment deploy:$BRANCH $IMAGE_TAG
