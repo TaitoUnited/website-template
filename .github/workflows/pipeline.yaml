@@ -92,7 +92,7 @@ jobs:
 
       # Prepare artifacts for deployment
       - run: taito artifact prepare:www:$BRANCH $IMAGE_TAG
-      - run: taito artifact prepare:webhook:$BRANCH $IMAGE_TAG
+      - run: taito artifact prepare:webhook:$BRANCH $IMAGE_TAG "" false ./www ./www Dockerfile.webhook
 
       # Deploy changes to target environment
       - run: taito db deploy:$BRANCH
