@@ -122,7 +122,7 @@ function notify() {
       ;;
   esac
 
-  if [[ "${SLACK_CHANNEL}" ]]; then
+  if [[ "${SLACK_CHANNEL}" ]] && [[ "${SLACK_WEBHOOK_URL}" ]]; then
     echo "Sending slack message: ${message}"
     send_slack_message "${message}" "${SLACK_WEBHOOK_URL}" "${SLACK_CHANNEL}"
   fi

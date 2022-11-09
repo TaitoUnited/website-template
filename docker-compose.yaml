@@ -56,7 +56,7 @@ services:
   #     COMMON_PUBLIC_PORT: 9754
   #     COMMON_ENV: dev
   #     WEBSITE_URL: http://localhost:9754
-  #     SLACK_CHANNEL: taito-website
+  #     SLACK_CHANNEL:
   #     # OPTIONAL:
   #     VC_PULL_ENABLED: 'false'
   #     VC_REPOSITORY_URL: ${taito_vc_repository_url}.git

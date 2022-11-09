@@ -95,6 +95,6 @@ full-stack:
         VC_TOKEN: ${taito_project}-${taito_env}-webhook.gittoken
       env:
         WEBSITE_URL: https://${taito_domain}
-        SLACK_CHANNEL: taito-website
+        SLACK_CHANNEL:
         VC_PULL_ENABLED: false
         VC_REPOSITORY_URL: ${taito_vc_repository_url}.git
