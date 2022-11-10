@@ -1,13 +1,15 @@
 # Builder and tester container for production build
 FROM node:lts-bullseye-slim as builder
 
+RUN echo "Increase this counter to trigger full build: 1"
+
 RUN mkdir -p /develop
 WORKDIR /develop
 
 ARG SERVICE_DIR=.
 COPY ${SERVICE_DIR}/*.sh \
-     ${SERVICE_DIR}/package* \
-     /develop/
+    ${SERVICE_DIR}/package* \
+    /develop/
 
 ENV NODE_ENV development
 ENV APP_SENTRY_PUBLIC_DSN #sentryPublicDSN
@@ -40,9 +42,9 @@ RUN npm run build && \
 FROM nginx:stable-alpine
 ARG BUILD_VERSION
 LABEL version=${BUILD_VERSION} \
-      company=taito \
-      project=website-template \
-      role=www
+    company=taito \
+    project=website-template \
+    role=www
 RUN mkdir -p /service
 WORKDIR /service
 RUN chown -R nginx:root /service && \
