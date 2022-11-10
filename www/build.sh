@@ -12,6 +12,9 @@ mkdir -p "${dest_dir}"
 if [[ -f ./site/package.json ]]; then
   # Gatsby build
   cd site
+  # TODO: why webhook does not work without deleting
+  # the public folder?
+  rm -rf public
   npm run "${command}"
   cp -rf ./public/* "${dest_dir}"
 elif [[ -f ./site/Gemfile ]]; then
