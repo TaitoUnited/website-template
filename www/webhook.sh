@@ -160,6 +160,7 @@ function exec_hook_command() {
     # Copy the original build to the empty shared volume
     mkdir -p /build
     if [[ -z "$(ls -A /build)" ]]; then
+      echo "Copying website from /build-orig as /build is empty"
       cp -rf /build-orig/* /build
     fi
 
