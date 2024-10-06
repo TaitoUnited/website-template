@@ -182,6 +182,9 @@ function exec_hook_command() {
   elif [[ "${command}" == "publish" ]]; then
     # Partially build the real site
     (cd "/develop${DIR_SUFFIX}" && npm run publish)
+    # Delete removed pages from the disk so that they don't
+    # remain there for a too long time.
+    find /build/public -name index.html -type f -mmin +60
   else
     echo "Unknown command: ${command}"
     exit 1
