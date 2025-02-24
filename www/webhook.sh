@@ -184,7 +184,7 @@ function exec_hook_command() {
     (cd "/develop${DIR_SUFFIX}" && npm run publish)
     # Delete removed pages from the disk so that they don't
     # remain there for a too long time.
-    find /build/public -name index.html -type f -mmin +60
+    find /build/public -name index.html -type f -mmin +60 -delete
   else
     echo "Unknown command: ${command}"
     exit 1
