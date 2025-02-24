@@ -157,11 +157,13 @@ function exec_hook_command() {
   echo "Executing command: ${command}"
 
   if [[ "${command}" == "deployment" ]]; then
-    # Copy the original build to the empty shared volume
+    # Copy the original build to the empty shared volume but only if it's a new build
     mkdir -p /build
-    if [[ -z "$(ls -A /build)" ]]; then
-      echo "Copying website from /build-orig as /build is empty"
+    if [[ -z "$(ls -A /build)" ]] && [[ $(find "/build-orig" -mmin -120 -print) ]]; then
+      echo "Copying site from /build-orig as /build is empty"
       cp -rf /build-orig/* /build
+      # Trigger also build in backgroun in case a new post was released during build
+      (cd "/develop${DIR_SUFFIX}" && npm run publish &)
     fi
 
     if [[ "${VC_PULL_ENABLED}" == "true" ]]; then
