@@ -155,12 +155,14 @@ function full_build() {
 function publish() {
   echo "Publishing..."
 
-  # Partially build the real site
-  (cd "/develop${DIR_SUFFIX}" && npm run publish)
-
-  # Delete removed pages from the disk so that they don't
+  # Partially build the real site and
+  # delete removed pages from the disk so that they don't
   # remain there for a too long time.
-  find /build/public -name index.html -type f -mmin +60 -delete
+  (
+    cd "/develop${DIR_SUFFIX}" &&
+    npm run publish &&
+    find /build/public -name index.html -type f -mmin +60 -delete
+  )
 
   echo "Publish DONE"
 }
