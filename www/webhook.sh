@@ -152,18 +152,29 @@ function full_build() {
   npm run "${command}"
 }
 
+function publish() {
+  echo "Publishing..."
+
+  # Partially build the real site
+  (cd "/develop${DIR_SUFFIX}" && npm run publish)
+
+  # Delete removed pages from the disk so that they don't
+  # remain there for a too long time.
+  find /build/public -name index.html -type f -mmin +60 -delete
+
+  echo "Publish DONE"
+}
+
 function exec_hook_command() {
   local command=$1
   echo "Executing command: ${command}"
 
   if [[ "${command}" == "deployment" ]]; then
-    # Copy the original build to the empty shared volume but only if it's a new build
+    # Copy the original build to the empty shared volume
     mkdir -p /build
-    if [[ -z "$(ls -A /build)" ]] && [[ $(find "/build-orig" -mmin -120 -print) ]]; then
+    if [[ -z "$(ls -A /build)" ]]; then
       echo "Copying site from /build-orig as /build is empty"
       cp -rf /build-orig/* /build
-      # Trigger also build in backgroun in case a new post was released during build
-      (cd "/develop${DIR_SUFFIX}" && npm run publish &)
     fi
 
     if [[ "${VC_PULL_ENABLED}" == "true" ]]; then
@@ -175,6 +186,10 @@ function exec_hook_command() {
       npm run install-site
       cp -r /develop/repository /preview/repository
     fi
+
+    # Trigger also build in background just in case
+    publish &
+
   elif [[ "${command}" == "build" ]]; then
     full_build build:preview /preview "${VC_PULL_ENABLED}"
     full_build build /develop "${VC_PULL_ENABLED}"
@@ -182,11 +197,7 @@ function exec_hook_command() {
     # Partially build the preview site
     (cd "/preview${DIR_SUFFIX}" && npm run publish:preview)
   elif [[ "${command}" == "publish" ]]; then
-    # Partially build the real site
-    (cd "/develop${DIR_SUFFIX}" && npm run publish)
-    # Delete removed pages from the disk so that they don't
-    # remain there for a too long time.
-    find /build/public -name index.html -type f -mmin +60 -delete
+    publish
   else
     echo "Unknown command: ${command}"
     exit 1
