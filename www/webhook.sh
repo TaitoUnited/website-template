@@ -161,7 +161,7 @@ function publish() {
   (
     cd "/develop${DIR_SUFFIX}" &&
     npm run publish &&
-    find /build/public -name index.html -type f -mmin +60 -delete &&
+    find /build/public \( -name "index.html" -o -name "page-data.json" -o -name "*.js" -o -name "*.js.map" -o -name "*.LICENSE.txt" \) -type f -mmin +60 -delete &&
     find /build/public -depth -type d -empty -delete
   )
 
